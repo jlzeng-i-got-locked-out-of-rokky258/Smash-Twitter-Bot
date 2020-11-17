@@ -20,7 +20,7 @@ except:
 f = open("import.txt", "w", encoding="utf-8")
 
 
-for tweet in api.search(q="ness AND (#ssbu OR ssbu)", lang="en", rpp=100, count=100, tweet_mode='extended'):
+for tweet in api.search(q="wolf AND (#ssbu OR ssbu)", lang="en", rpp=100, count=100, tweet_mode='extended'):
     print(f"{tweet.user.name}:{tweet.full_text}")
     f.write(str({tweet.full_text}) + "\n")
 

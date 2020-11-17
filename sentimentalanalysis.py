@@ -110,7 +110,28 @@ dataset = p_set + n_set
 print(len(dataset))
 random.shuffle(dataset)
 classifier = NaiveBayesClassifier.train(dataset)
-custom_tweet = "Fox is a very stinky character. He is bad."
+custom_tweet = " is a very stinky character. He is bad."
 
-custom_tokens = remove_noise(word_tokenize(custom_tweet))
-print(classifier.classify(dict([token, True] for token in custom_tokens)))
+
+
+etweets = {}
+#CHANGE THIS TO THE CORRECT CHARACTER
+with open('C:/Users/rokky/Documents/GitHub/Smash-Twitter-Bot/Character Tweets/wolf.csv', newline='', encoding="utf-8") as csvfile:
+    reader = csv.reader(csvfile)
+    iterator = 0
+    for rows in reader:
+        k = rows[0]
+        etweets[iterator] = k
+        iterator += 1
+
+positivetweets = 0
+totaltweets = 0
+for i in etweets:
+    print(etweets[i])
+    custom_tweet = etweets[i]
+    custom_tokens = remove_noise(word_tokenize(custom_tweet))
+    if(classifier.classify(dict([token, True] for token in custom_tokens)) == ("Positive")):
+        positivetweets += 1;
+    totaltweets += 1;
+
+print(positivetweets/totaltweets)
